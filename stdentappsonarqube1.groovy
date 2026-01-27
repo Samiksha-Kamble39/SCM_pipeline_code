@@ -11,13 +11,31 @@ pipeline {
                 sh '/opt/maven/bin/mvn clean package'
             }
         }
-         stage('test-stage') {
+         stage('tesr-stage') {
             steps {
-                withSonarQubeEnv(installationName : ‘sonar’ ,credentialsId: 'cred1-sonar') {
-    sh ' /opt/maven/bin/mvn clean verify sonar:sonar  ‘
-}
+                withSonarQubeEnv(installationName: 'sonar',credentialsId: 'sonar-cred') {
+                 sh ' /opt/maven/bin/mvn clean verify sonar:sonar '
+            }
+                // sh '''  /opt/maven/bin/mvn clean verify sonar:sonar \\
+                //         -Dsonar.projectKey=new-studentapp \\
+                //         -Dsonar.host.url=http://172.31.21.29:9000 \\
+                //         -Dsonar.login=1bdbff4bf01b412d86dd2e9aaa23cff101b5c927'''
             }
         }
+         stage('Quality_Gate') {
+            steps {
+                timeout(10) {
+   
+            }
+                waitForQualityGate true
+            }
+        }
+           stage('Artifatory-stage') {
+            steps {
+               sh 'aws s3 cp  target/studentapp-2.2-SNAPSHOT.war  s3://mybuck-00759746/'
+            }
+        }
+
          stage('deploy-stage') {
             steps {
                 echo 'code deploy sucessfully'
@@ -25,4 +43,3 @@ pipeline {
         }
     }
 }
-
