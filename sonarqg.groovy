@@ -24,7 +24,7 @@ pipeline {
                 timeout(10) {
    
             }
-                waitForQualityGate true, credentialsId: 'cred1-sonar'
+                waitForQualityGate true
             }
         }
 
