@@ -1,21 +1,21 @@
 pipeline {
-    agent { label 'slave' }
+    agent {label 'node1'}
     stages {
-        stage('git-pull-stage') {
+        stage('Pull') {
             steps {
-                git branch: 'main', url: 'https://github.com/Samiksha-Kamble39/Terraform.git'
+                git branch: 'main', url: 'https://github.com/Anilbamnote/oncdec-b18.git'
             }
         }
-         stage('Test') {
+        stage('Test') {
             steps {
-                sh ''' cd /Terraform/eks
+                sh ''' cd /terraform/eks
                     terraform init
                     terraform plan'''
             }
         }
         stage('Deploy') {
             steps {
-                sh ''' cd /Terraform/eks
+                sh ''' cd /terraform/eks
                     terraform init
                     terraform apply --auto-approve'''
             }
