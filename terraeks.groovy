@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                git branch: 'main', url: 'https://github.com/Samiksha-Kamble39/Terraform.git'
+                git branch: 'main', url: 'https://github.com/Samiksha-Kamble39/terraform.git'
             }
         }
         stage('Test') {
