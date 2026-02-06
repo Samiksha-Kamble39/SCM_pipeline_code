@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
-                git branch: 'main', url: 'https://github.com/Anilbamnote/oncdec-b18.git'
+                git branch: 'main', url: 'https://github.com/Anilbamnote/47-cdec.git'
             }
         }
         stage('Test') {
