@@ -6,20 +6,19 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Samiksha-Kamble39/Terraform.git'
             }
         }
-         stage('Test-stage') {
+         stage('Test') {
             steps {
-                sh '''cd /eks 
-                     terraform init 
-                     terraform plan'''
+                sh ''' cd /Terraform/eks
+                    terraform init
+                    terraform plan'''
             }
         }
-         stage('deploy-stage') {
+        stage('Deploy') {
             steps {
-                sh '''cd /eks
-                       terraform init
-                       terraform apply --auto-approve'''
+                sh ''' cd /Terraform/eks
+                    terraform init
+                    terraform apply --auto-approve'''
             }
-         }
-     }
+        }
+    }
 }
-        
