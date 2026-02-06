@@ -11,7 +11,7 @@ pipeline {
                 sh '/opt/maven/bin/mvn clean package'
             }
         }
-         stage('tesr-stage') {
+         stage('test-stage') {
             steps {
                 echo 'code test sucessfully'
             }
