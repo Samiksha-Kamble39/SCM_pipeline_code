@@ -13,19 +13,19 @@ pipeline {
                     terraform plan'''
             }
         }
-        stage('Deploy') {
+      /*  stage('Deploy') {
             steps {
                 sh ''' cd eks
                     terraform init
                    terraform apply --auto-approve'''
             }
-        }
-     /*   stage('Destroy') {
+        }  */
+        stage('Destroy') {
             steps {
                 sh ''' cd eks
                     terraform init
                     terraform destroy --auto-approve'''
             }
-        }     */
+        }     
     }
 }
